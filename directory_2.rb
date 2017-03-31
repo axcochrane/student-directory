@@ -33,6 +33,16 @@ def print_footer names
 	puts "overall, we have #{names.count} great students"
 end
 
+def print_names_condition names
+ 		names.each_with_index do |name, index|
+ 			first_name = name[:name]
+ 			if first_name[0] == "S"
+		puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
+			end
+	end
+end
+
+
 def input_students
 	puts "Please enter the name of the students"
 	puts "To finish simply hit enter twice"
@@ -51,6 +61,6 @@ end
 students = input_students
 
 print_header
-print_names(students)
+print_names_condition(students)
 print_footer(students)
 
