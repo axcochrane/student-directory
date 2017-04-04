@@ -105,6 +105,13 @@ def input_students_v2
 	return students
 end
 
+def list_cohorts array
+	 cohort_arr = []
+	 cohort_arr = array.map.uniq { |x| x[:cohort] }
+	 puts cohort_arr
+end
+
+
 # ask name
 #   check if blank, insist on name
 # ask cohort
@@ -115,7 +122,7 @@ end
 
 
 students = input_students_v2
-print_header
-print_names_while(students)
-print_footer(students)
-
+#print_header
+#print_names_while(students)
+#print_footer(students)
+list_cohorts(students)
