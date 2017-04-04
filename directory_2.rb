@@ -80,7 +80,7 @@ def input_students_v2
 			
 			puts "Please enter student start cohort (if blank will default to January)"
 			x = gets.chomp
-				if x.empty?
+				if x.empty? 
 					cohort = :january
 				else
 					cohort = x.to_sym
@@ -107,8 +107,48 @@ end
 
 def list_cohorts array
 	 cohort_arr = []
-	 cohort_arr = array.map.uniq { |x| x[:cohort] }
+	 cohort_arr = array.map.uniq { |x| x[:jan] }
 	 puts cohort_arr
+end
+
+def print_cohorts students, cohorts
+	new_students = []
+  cohorts.each do |y|
+		students.each do |x|
+			if x[:cohort] == y
+		  	new_students << x
+		  end
+		end
+		puts new_students 
+	end
+end
+
+def interactive_menu
+  students = []
+  loop do print_menu
+    selection = gets.chomp
+    case selection
+    when "1"
+      students = input_students_v2
+    when "2" show_students
+    when "9"
+      exit # this will cause the program to terminate
+    else
+      puts "I don't know what you meant, try again"
+    end
+  end
+end
+
+def show_students
+  print_header
+  print(students)
+  print_footer(students)
+end
+
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit" # 9 because we'll be adding more items  
 end
 
 
@@ -120,9 +160,10 @@ end
 #   if typo don't shovel
 #
 
-
-students = input_students_v2
+interactive_menu
+#students = input_students_v2
 #print_header
 #print_names_while(students)
 #print_footer(students)
-list_cohorts(students)
+#list_cohorts(students)
+#print_cohorts(students,cohort_arr)
